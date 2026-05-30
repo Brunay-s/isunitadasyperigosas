@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------
-# FUNÇÃO PARA CARREGAR IMAGENS LOCAIS
+# MÁGICA 1: MEMÓRIA PARA CARREGAR FOTOS RÁPIDO
 # ---------------------------------------------------
 @st.cache_data
 def get_base64(file_path):
@@ -24,20 +24,59 @@ def get_base64(file_path):
         return base64.b64encode(data).decode()
     except:
         return None
+
 # ---------------------------------------------------
-# FUNÇÃO PARA CARREGAR OS BILHETES (COM MEMÓRIA)
+# MÁGICA 2: MEMÓRIA PARA LER OS BILHETES
 # ---------------------------------------------------
 @st.cache_data
 def pegar_bilhetes():
     try:
-        with open('bilhetinhos_lista.txt', 'r', encoding='utf-8') as f:
+        # Se você tiver deixado o B maiúsculo no GitHub, mude aqui para Bilhetinhos_lista.txt
+        with open('bilhetinhos_lista.txt', 'r', encoding='utf-8') as f: 
             texto_completo = f.read()
         lista_bruta = texto_completo.split('\n\n')
         return [b.strip() for b in lista_bruta if b.strip() != ""]
     except FileNotFoundError:
         return []
+
 # ---------------------------------------------------
-# CSS CUSTOMIZADO (Fundo Praia Leve + Polaroids em Destaque)
+# MÁGICA 3: O ESCUDO DO SORTEADOR (ISOLAMENTO TOTAL)
+# ---------------------------------------------------
+@st.fragment
+def renderizar_sorteador(bilhetes):
+    col1, col2, col3 = st.columns([1,2,1])
+    with col2:
+        if st.button("✨ Sortear Novo Bilhete", use_container_width=True):
+            st.session_state.bilhete_atual = random.choice(bilhetes)
+
+        st.markdown(f"""
+        <div style="
+            background: #fdfaf3;
+            padding: 40px;
+            border-radius: 5px;
+            border-left: 8px solid #d4a373;
+            box-shadow: 2px 5px 15px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        ">
+            <p style="
+                font-family: 'Indie Flower', cursive;
+                font-size: 1.8rem;
+                color: #333;
+                line-height: 1.4;
+                white-space: pre-wrap; 
+            ">
+                "{st.session_state.bilhete_atual}"
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+# ---------------------------------------------------
+# CSS CUSTOMIZADO
 # ---------------------------------------------------
 st.markdown("""
 <style>
@@ -54,11 +93,11 @@ st.markdown("""
 /* Títulos */
 h1, h2, h3 {
     font-family: 'Special Elite', cursive;
-    color: #004e64 !important; /* Azul oceano profundo */
+    color: #004e64 !important;
     text-shadow: 1px 1px 2px white;
 }
 
-/* GARANTINDO QUE A FAIXA CREME SUMA (Fundo das abas transparente) */
+/* GARANTINDO QUE A FAIXA CREME SUMA */
 .stTabs [data-baseweb="tab-panel"] {
     background-color: transparent !important;
     box-shadow: none !important;
@@ -74,7 +113,7 @@ h1, h2, h3 {
     font-family: 'Special Elite';
 }
 
-/* Polaroid na Timeline (Sólidas em Destaque) */
+/* Polaroid na Timeline */
 .polaroid-frame {
     background: white;
     padding: 15px 15px 40px 15px;
@@ -89,19 +128,11 @@ h1, h2, h3 {
 .polaroid-frame:hover {
     transform: scale(1.05) rotate(0deg) !important;
 }
-
-.caption {
-    font-family: 'Homemade Apple', cursive;
-    text-align: center;
-    margin-top: 15px;
-    color: #333;
-    font-size: 16px;
-}
 </style>
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------
-# HEADER & SPOTIFY (Fixo no topo e pequeno no canto)
+# HEADER & SPOTIFY
 # ---------------------------------------------------
 col_titulo, col_spotify = st.columns([4, 1.5])
 
@@ -114,7 +145,6 @@ with col_titulo:
     """, unsafe_allow_html=True)
 
 with col_spotify:
-    # Espaço para alinhar com o título
     st.markdown("<br>", unsafe_allow_html=True) 
     
     link_do_spotify = "https://open.spotify.com/playlist/2qd7rCB1hcrhscHnjthPA2?si=f5003a2ba4aa4841"
@@ -126,15 +156,14 @@ with col_spotify:
             embed_url = link.replace("open.spotify.com/playlist", "open.spotify.com/embed/playlist")
         else:
             embed_url = link
-        # height=80 deixa o Spotify fininho
         components.iframe(embed_url, height=80) 
 
     criar_player_spotify(link_do_spotify)
 
-st.write("") # Espaço em branco
+st.write("") 
 
 # ---------------------------------------------------
-# TABS (Estrutura e visual idênticos à sua primeira versão)
+# TABS
 # ---------------------------------------------------
 tab1, tab2, tab3, tab4 = st.tabs(["📍 Início", "📖 Nossa Timeline", "⏳ Contagem", "💌 Sorteador"])
 
@@ -171,11 +200,9 @@ with tab2:
         if i % 2 == 0:
             col_img = col_left
             col_text = col_right
-            align = "flex-end"
         else:
             col_img = col_right
             col_text = col_left
-            align = "flex-start"
 
         with col_img:
             extensoes = ['jpg', 'png', 'jpeg']
@@ -212,7 +239,7 @@ with tab2:
             """, unsafe_allow_html=True)
 
 with tab3:
-    inicio = datetime(2023, 7, 12) # Ajuste sua data aqui!
+    inicio = datetime(2023, 7, 12)
     hoje = datetime.now()
     dias = (hoje - inicio).days
     
@@ -227,42 +254,15 @@ with tab4:
     st.markdown('<h2 style="text-align:center;">Caixinha de Bilhetes</h2>', unsafe_allow_html=True)
     st.markdown('<p style="text-align:center; font-family: \'Indie Flower\';">Clique no botão para sortear uma mensagem especial do nosso histórico.</p>', unsafe_allow_html=True)
 
-    # Aqui a gente chama aquela função com memória que criamos lá em cima!
+    # Pegamos os bilhetes da memória rápida
     bilhetes = pegar_bilhetes()
 
     if len(bilhetes) == 0:
         st.error("⚠️ O arquivo 'bilhetinhos_lista.txt' não foi encontrado ou está vazio!")
     else:
+        # Prepara a variável se for a primeira vez
         if 'bilhete_atual' not in st.session_state:
             st.session_state.bilhete_atual = "Clique no botão abaixo para ler um bilhetinho..."
-
-        col1, col2, col3 = st.columns([1,2,1])
-        with col2:
-            if st.button("✨ Sortear Novo Bilhete", use_container_width=True):
-                st.session_state.bilhete_atual = random.choice(bilhetes)
-
-            st.markdown(f"""
-            <div style="
-                background: #fdfaf3;
-                padding: 40px;
-                border-radius: 5px;
-                border-left: 8px solid #d4a373;
-                box-shadow: 2px 5px 15px rgba(0,0,0,0.1);
-                margin-top: 20px;
-                min-height: 200px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-            ">
-                <p style="
-                    font-family: 'Indie Flower', cursive;
-                    font-size: 1.8rem;
-                    color: #333;
-                    line-height: 1.4;
-                    white-space: pre-wrap; 
-                ">
-                    "{st.session_state.bilhete_atual}"
-                </p>
-            </div>
-            """, unsafe_allow_html=True)
+        
+        # Chama a mágica do escudo protetor!
+        renderizar_sorteador(bilhetes)
