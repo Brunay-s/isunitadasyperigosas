@@ -25,7 +25,7 @@ def get_base64(file_path):
         return None
 
 # ---------------------------------------------------
-# CSS CUSTOMIZADO (Vibe Praia + Scrapbook)
+# CSS CUSTOMIZADO (Fundo Praia Leve + Polaroids em Destaque)
 # ---------------------------------------------------
 st.markdown("""
 <style>
@@ -46,26 +46,23 @@ h1, h2, h3 {
     text-shadow: 1px 1px 2px white;
 }
 
-/* Estilo da Linha do Tempo (Timeline) */
-.timeline-container {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0;
+/* GARANTINDO QUE A FAIXA CREME SUMA (Fundo das abas transparente) */
+.stTabs [data-baseweb="tab-panel"] {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding-top: 15px;
 }
 
-.timeline-line {
-    position: absolute;
-    width: 6px;
-    background-color: rgba(212, 163, 115, 0.6); /* Cor de areia */
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -3px;
-    border-radius: 10px;
+/* Estilo Original das Abas */
+.stTabs [data-baseweb="tab-list"] { gap: 8px; }
+.stTabs [data-baseweb="tab"] {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px 10px 0 0;
+    font-family: 'Special Elite';
 }
 
-/* Polaroid na Timeline */
+/* Polaroid na Timeline (Sólidas em Destaque) */
 .polaroid-frame {
     background: white;
     padding: 15px 15px 40px 15px;
@@ -88,31 +85,47 @@ h1, h2, h3 {
     color: #333;
     font-size: 16px;
 }
-
-/* Tabs */
-.stTabs [data-baseweb="tab-list"] { gap: 8px; }
-.stTabs [data-baseweb="tab"] {
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 10px 10px 0 0;
-    font-family: 'Special Elite';
-}
 </style>
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------
-# HEADER
+# HEADER & SPOTIFY (Fixo no topo e pequeno no canto)
 # ---------------------------------------------------
-st.markdown("""
-<div style="text-align: center; padding: 20px;">
-    <h1 style="font-size: 4rem;">Perigosas ao Mar 🌊</h1>
-    <p style="font-family: 'Indie Flower'; font-size: 1.8rem; color: #004e64;">Nossa história em 30 cliques de sol e sal.</p>
-</div>
-""", unsafe_allow_html=True)
+col_titulo, col_spotify = st.columns([4, 1.5])
+
+with col_titulo:
+    st.markdown("""
+    <div style="text-align: left; padding: 20px 0 0 20px;">
+        <h1 style="font-size: 4rem; margin-bottom: 0;">Perigosas ao Mar 🌊</h1>
+        <p style="font-family: 'Indie Flower'; font-size: 1.8rem; color: #004e64; margin-top: 0;">Nossa história em 30 cliques de sol e sal.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col_spotify:
+    # Espaço para alinhar com o título
+    st.markdown("<br>", unsafe_allow_html=True) 
+    
+    link_do_spotify = "https://open.spotify.com/playlist/2qd7rCB1hcrhscHnjthPA2?si=f5003a2ba4aa4841"
+
+    def criar_player_spotify(link):
+        if "track" in link:
+            embed_url = link.replace("open.spotify.com/track", "open.spotify.com/embed/track")
+        elif "playlist" in link:
+            embed_url = link.replace("open.spotify.com/playlist", "open.spotify.com/embed/playlist")
+        else:
+            embed_url = link
+        # height=80 deixa o Spotify fininho
+        components.iframe(embed_url, height=80) 
+
+    criar_player_spotify(link_do_spotify)
+
+st.write("") # Espaço em branco
 
 # ---------------------------------------------------
-# TABS
+# TABS (Estrutura e visual idênticos à sua primeira versão)
 # ---------------------------------------------------
 tab1, tab2, tab3, tab4 = st.tabs(["📍 Início", "📖 Nossa Timeline", "⏳ Contagem", "💌 Sorteador"])
+
 with tab1:
     st.markdown("""
     <div style="background: rgba(253, 250, 243, 0.8); padding: 30px; border-radius: 15px; border-left: 10px solid #d4a373;">
@@ -163,7 +176,6 @@ with tab2:
                     break
 
             src = f"data:image/jpeg;base64,{img_data}" if img_data else "https://via.placeholder.com/300x400"
-
             rot = random.randint(-3, 3)
 
             st.markdown(f"""
@@ -186,6 +198,7 @@ with tab2:
                 {descricoes[i-1]}
             </div>
             """, unsafe_allow_html=True)
+
 with tab3:
     inicio = datetime(2023, 7, 12) # Ajuste sua data aqui!
     hoje = datetime.now()
@@ -198,38 +211,25 @@ with tab3:
     </div>
     """, unsafe_allow_html=True)
 
-# ---------------------------------------------------
-# SIDEBAR
-# ---------------------------------------------------
-st.sidebar.markdown("### 🖋️ Log de Bordo")
-st.sidebar.write("Estado atual: **Muito Amor** ❤️")
-st.sidebar.info("As fotos são carregadas automaticamente da pasta se tiverem o nome: 'foto 1.jpg', 'foto 2.jpg'...")
 with tab4:
     st.markdown('<h2 style="text-align:center;">Caixinha de Bilhetes</h2>', unsafe_allow_html=True)
     st.markdown('<p style="text-align:center; font-family: \'Indie Flower\';">Clique no botão para sortear uma mensagem especial do nosso histórico.</p>', unsafe_allow_html=True)
 
     try:
-        # 1. Abre o seu novo arquivo de texto (certifique-se do nome exato aqui!)
         with open('bilhetinhos_lista.txt', 'r', encoding='utf-8') as f:
             texto_completo = f.read()
 
-        # 2. Usa a quebra de parágrafo ('\n\n') como "tesoura" para separar cada bilhete
         lista_bruta = texto_completo.split('\n\n')
-        
-        # 3. Limpa espaços extras e pega apenas os blocos que não estão vazios
         bilhetes = [b.strip() for b in lista_bruta if b.strip() != ""]
 
-        # 4. Cria o estado para o bilhete não sumir da tela
         if 'bilhete_atual' not in st.session_state:
             st.session_state.bilhete_atual = "Clique no botão abaixo para ler um bilhetinho..."
 
         col1, col2, col3 = st.columns([1,2,1])
         with col2:
             if st.button("✨ Sortear Novo Bilhete", use_container_width=True):
-                # Usa o random do próprio Python para escolher um da lista
                 st.session_state.bilhete_atual = random.choice(bilhetes)
 
-            # Estilização do Bilhete sorteado
             st.markdown(f"""
             <div style="
                 background: #fdfaf3;
@@ -249,7 +249,7 @@ with tab4:
                     font-size: 1.8rem;
                     color: #333;
                     line-height: 1.4;
-                    white-space: pre-wrap; /* Mantém as quebras de linha dentro do próprio bilhete */
+                    white-space: pre-wrap; 
                 ">
                     "{st.session_state.bilhete_atual}"
                 </p>
@@ -258,3 +258,4 @@ with tab4:
 
     except FileNotFoundError:
         st.error("⚠️ O arquivo 'bilhetinhos_lista.txt' não foi encontrado. Coloque ele na mesma pasta do seu site!")
+
