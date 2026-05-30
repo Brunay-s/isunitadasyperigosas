@@ -16,6 +16,7 @@ st.set_page_config(
 # ---------------------------------------------------
 # FUNÇÃO PARA CARREGAR IMAGENS LOCAIS
 # ---------------------------------------------------
+@st.cache_data
 def get_base64(file_path):
     try:
         with open(file_path, "rb") as f:
@@ -259,3 +260,4 @@ with tab4:
     except FileNotFoundError:
         st.error("⚠️ O arquivo 'bilhetinhos_lista.txt' não foi encontrado. Coloque ele na mesma pasta do seu site!")
 
+    
