@@ -24,7 +24,18 @@ def get_base64(file_path):
         return base64.b64encode(data).decode()
     except:
         return None
-
+# ---------------------------------------------------
+# FUNÇÃO PARA CARREGAR OS BILHETES (COM MEMÓRIA)
+# ---------------------------------------------------
+@st.cache_data
+def pegar_bilhetes():
+    try:
+        with open('bilhetinhos_lista.txt', 'r', encoding='utf-8') as f:
+            texto_completo = f.read()
+        lista_bruta = texto_completo.split('\n\n')
+        return [b.strip() for b in lista_bruta if b.strip() != ""]
+    except FileNotFoundError:
+        return []
 # ---------------------------------------------------
 # CSS CUSTOMIZADO (Fundo Praia Leve + Polaroids em Destaque)
 # ---------------------------------------------------
@@ -216,13 +227,12 @@ with tab4:
     st.markdown('<h2 style="text-align:center;">Caixinha de Bilhetes</h2>', unsafe_allow_html=True)
     st.markdown('<p style="text-align:center; font-family: \'Indie Flower\';">Clique no botão para sortear uma mensagem especial do nosso histórico.</p>', unsafe_allow_html=True)
 
-    try:
-        with open('bilhetinhos_lista.txt', 'r', encoding='utf-8') as f:
-            texto_completo = f.read()
+    # Aqui a gente chama aquela função com memória que criamos lá em cima!
+    bilhetes = pegar_bilhetes()
 
-        lista_bruta = texto_completo.split('\n\n')
-        bilhetes = [b.strip() for b in lista_bruta if b.strip() != ""]
-
+    if len(bilhetes) == 0:
+        st.error("⚠️ O arquivo 'bilhetinhos_lista.txt' não foi encontrado ou está vazio!")
+    else:
         if 'bilhete_atual' not in st.session_state:
             st.session_state.bilhete_atual = "Clique no botão abaixo para ler um bilhetinho..."
 
@@ -256,8 +266,3 @@ with tab4:
                 </p>
             </div>
             """, unsafe_allow_html=True)
-
-    except FileNotFoundError:
-        st.error("⚠️ O arquivo 'bilhetinhos_lista.txt' não foi encontrado. Coloque ele na mesma pasta do seu site!")
-
-    
