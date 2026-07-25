@@ -8,7 +8,7 @@ import random
 # CONFIGURAÇÃO DA PÁGINA
 # ---------------------------------------------------
 st.set_page_config(
-    page_title="Perigosas - Nossa Rota",
+    page_title="Perigosas",
     page_icon="🏖️",
     layout="wide"
 )
@@ -165,7 +165,7 @@ st.write("")
 # ---------------------------------------------------
 # TABS
 # ---------------------------------------------------
-tab1, tab2, tab3, tab4 = st.tabs(["📍 Início", "📖 Nossa Timeline", "⏳ Contagem", "💌 Sorteador"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["📍 Início", "📖 Até Aqui", "⏳ Contagem", "💌 Bilhetinhos", "✈️ Vem aí"])
 
 with tab1:
     st.markdown("""
@@ -176,8 +176,62 @@ with tab1:
         </p>
     </div>
     """, unsafe_allow_html=True)
-    st.image("https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=800&q=80")
+    
+    st.write("")
+    st.image("https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=800&q=80", use_container_width=True)
 
+    # ---------------------------------------------------
+    # NOVA SEÇÃO: OS 4 MOTIVOS (Clean, com emojis!)
+    # ---------------------------------------------------
+    st.markdown("<hr style='border: 1px dashed #d4a373; margin: 40px 0;'>", unsafe_allow_html=True)
+    st.markdown('<h2 style="text-align:center; color: #004e64 !important; font-family: \'Special Elite\'; margin-bottom: 30px;">4 Motivos (entre milhares) que me fazem te amar</h2>', unsafe_allow_html=True)
+    
+    col1, col2, col3, col4 = st.columns(4)
+
+    motivos = [
+        {
+            "emoji": "👯‍♀️", 
+            "titulo": "Nossa Parceria", 
+            "texto": "Do baile da terceira idade aos bloquinhos de Salvador. A gente topa qualquer loucura juntas e faz tudo ser incrível."
+        },
+        {
+            "emoji": "🏡", 
+            "titulo": "Nosso Aconchego", 
+            "texto": "Da pizza no colchão inflável ao nosso Xeque Mate caseiro. Onde você está, é onde eu me sinto em casa."
+        },
+        {
+            "emoji": "🏕️", 
+            "titulo": "Nossa Coragem", 
+            "texto": "A força que a gente tem pra enfrentar a distância, as mudanças, montar apê do zero e até perrengue em barraca chovendo."
+        },
+        {
+            "emoji": "✨", 
+            "titulo": "Sua Essência", 
+            "texto": "Pelo seu jeito, pelo seu cheiro no pescoço e por cada detalhe seu que deixa os meus dias muito mais felizes."
+        }
+    ]
+
+    colunas = [col1, col2, col3, col4]
+
+    for i, col in enumerate(colunas):
+        with col:
+            st.markdown(f"""
+            <div style="
+                background: rgba(255, 255, 255, 0.85); 
+                padding: 25px 20px; 
+                border-radius: 10px; 
+                box-shadow: 2px 5px 15px rgba(0,0,0,0.05); 
+                text-align: center; 
+                height: 100%;
+                border-top: 4px solid #d4a373;
+            ">
+                <div style="font-size: 3rem; margin-bottom: 10px;">{motivos[i]['emoji']}</div>
+                <h4 style="font-family: 'Special Elite'; color: #004e64; margin-top: 0; margin-bottom: 15px; font-size: 1.2rem;">{motivos[i]['titulo']}</h4>
+                <p style="font-family: 'Indie Flower'; font-size: 1.1rem; color: #444; line-height: 1.4; margin: 0;">
+                    {motivos[i]['texto']}
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
 with tab2:
     st.markdown('<h2 style="text-align:center;">Nossa Rota de Memórias</h2>', unsafe_allow_html=True)
 
@@ -187,11 +241,11 @@ with tab2:
         "E então veio a Lorena. O presentinho mais fofo e inesperado que me deixou derretida rsrs 🪴", "De repente a gata dirigiu OITO HORAS sozinha pra me encontrar e poder curtir uns dias bem juntinhas na Bahia 🏝️", "Aí não teve jeito, tive que voar pra Bahia pra encontrar vc também 🏖️. Um pouco tensa 'será que duas semanas na casa dela é muito? Será que a gente vai se dar bem?!' Mas com um visual desse, não tinha como dar errado 🌸🌊🌞",
         "De repente, uma nova fase: eu mudei. O ap não tinha nada, móveis, geladeira, fogão, não tinha nem piso... mas tinha vc! Vc tava lá comigo, me abraçando e apoiando em cada perrengue (e cada ida à Leroy kkk)🏡", "Essa foi a nossa primeira noite na casinha. Colchão inflável de solteira (depois vc me emprestou o seu de casal, obrigada por isso rs), pizza, seriezinha e muito amor ❤️", "E então veio o dia a dia. Cada vez mais presente, cada vez mais gostoso. Cada dia, uma fotinho nova no espelho (na ida ou na volta rs). Escolhi essa pq resume bem os últimos meses: a gente indo pro Papoulas, um Xeque Mate caseiro, e um milho pra minha mulher não bater em ninguém no caminho 📸🍻",
         "Perrengue né?! Barraca quebrada, chuva, chuva dentro da barraca quebrada. Guarda chuva quebrado aberto dentro da barraca quebrada que tava chovendo dentro ⛈️ Um aniversário muito especial! (apesar do frio que eu passei naquela noite pq eu tava no lado molhado do colchão) ", "Mas deu tudo certo! O festival foi maravilhoso e a gente tava maravilhosa como sempre 🎶", "O primeiro Eu Te Amo 🥹 Eu toda nervosa planejando te falar em um pico lindo, feliz que ia falar primeiro e te fazer uma surpresa... vc falou antes. gay panic. surpresa. assembléia. ''não quero que meu primeiro eu te amo seja um 'eu também' bêbada. mas se eu não responder nada ela vai achar que eu não amo. REAGE BRUNA. FALA ALGUMA COISA CRUELA. silêncio'' Mas no outro dia deu tudo certo, falei na borda infinita de uma cachoeira linda 🩵🌈",
-        "aaaah o Carnaval... 'Vamo pra Salvador? Vamo! Vamo passar o dia bebendo em bloquinhos por SP antes do vôo? Vamo!' Eu amo isso na gente 🤗", "Mais um sonho realizado juntas! Carnaval em Salvador. Com direito a BaianaSystem 2x e Veveta dona do hit do Carnaval daquele ano AAAAAAAAHHHHRRRRR BEBÊ 🗣️🪂", "O melhor sorvete do mundo 🍦",
-        "Sob a luz da lua 🌙", "Caminhada matinal ☀️", "A foto clássica no espelho 🤳",
-        "Perdidas (e felizes) no mapa 📍", "Comemorando mais um mês 🎂", "A coragem que a gente tem 💪",
-        "A paz de estar com você 🧘", "Nossa piada interna preferida 🤡", "Onde a gente se sente em casa 🏠",
-        "Mais um destino riscado ✅", "Apenas nós duas 👭", "E que venham as próximas! 🚀"
+        "aaaah o Carnaval... 'Vamo pra Salvador? Vamo! Vamo passar o dia bebendo em bloquinhos por SP antes do vôo? Vamo!' Eu amo isso na gente 🤗", "Mais um sonho realizado juntas! Carnaval em Salvador. Com direito a BaianaSystem 2x e Veveta dona do hit do Carnaval daquele ano AAAAAAAAHHHHRRRRR BEBÊ 🗣️🪂", "Aí descobrimos um novo vício juntas. Viramos a melhor dupla de sinuquinha 🎱",
+        "A melhor conchinha do mundo. Sou muito feliz que a Juju também me escolheu! Aliás, não é por nada não, mas ela dorme comigo desde o dia 1 😸", "Aí veio a fase artista. 98374 ensaios na semana. 98273 apresentações. E vc sempre lá do meu lado. Mesmo depois da minha tentativa falha de tirar uma foto sexy 🥴", "Carnaval em SP. A gente não esperava muita coisa mas foi incrível. Claro né, com a melhor companhia do mundo todo não tem como ser ruim 🫵🍻",
+        "Mais um episódio de 'Vamo? Vamo!' Bom demais curtir um rolezão com vc 👽", "Esse dia foi um dia comum. A gente chegou do bar igual sempre, demos um beijão tão gostoso (como sempre) mas que por algum motivo ficou guardado (e obrigada por ter filmado) 🫦💄", "Aniversário de namoro. Date surpresa. Será que eu devia ser romântica? Será que ela vai me odiar por colocar ela pra trabalhar de surpresa? Mas era óbvio que vc, com seu coração enorme iria amar fazer algo bom para as pessoas, enquanto experimenta uma atividade pela primeira vez comigo. Obrigada por ter um coração tão lindo. 🏠💪",
+        "Nosso primeiro casamento juntas. Eu toda garouta princesa de madrinha e vc bem sexy saptônica de terninho. Que casalzão, ave 🤤", "Depois a gente inverteu. Vc toda princesa e eu sapatona. Foi meu primeiro casamento LGBT, foi muito lindo viver ele do seu lado e imaginar a gente, de repente 🌝👰🏻👰🏽", "Eu amo tanto nossas aleatoriedades, momentos ilha da bobeira 🥹 Esse foi um deles. Essa viagem foi um mix de sentimentos, era a última antes de eu vir pra cá. Uma mistura de melancolia com saudade antecipada.Parecia tão distante, tão difícil. E foi rs Mas agora já estamos aqui, na contagem regressiva, já quase posso sentir o seu toque. A gente conseguiu 🥹😍",
+        "O surto da foto do peitinho 🗣️ Coloquei pra te zuar enquanto vc ia resolver algo da prancha e acabei ficando com a foto até as primeiras semanas na NZ. Pelo menos era um fundo de tela obra de arte né (só que eu tinha que falar por vídeo com a família entortando a cabeça, pra cobrir a tetinha de fora 🗣️🍈)", "Apenas nós duas 👭", "E que venham as próximas! 🚀"
     ]
 
     for i in range(1, 31):
