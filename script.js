@@ -83,18 +83,35 @@ const drawBtn = document.getElementById('draw-btn');
 const noteCard = document.getElementById('note-card');
 const noteText = document.getElementById('note-text');
 let lastIndex = -1;
+let bilhetes = [];
+
+// Carrega o arquivo TXT automaticamente
+fetch('bilhetinhos_lista.txt')
+  .then(response => response.text())
+  .then(text => {
+    // Separa o texto linha por linha e ignora linhas em branco
+    bilhetes = text.split('\n').filter(linha => linha.trim() !== '');
+  })
+  .catch(err => {
+    console.error('Erro ao carregar o arquivo txt:', err);
+    bilhetes = ["Erro ao carregar os bilhetinhos. Verifique o arquivo txt!"];
+  });
 
 drawBtn.addEventListener('click', () => {
+  if (bilhetes.length === 0) return; // Aguarda o arquivo carregar
+
   noteCard.classList.remove('show');
   setTimeout(() => {
     let index;
-    do { index = Math.floor(Math.random() * bilhetes.length); } while (index === lastIndex && bilhetes.length > 1);
+    do { 
+      index = Math.floor(Math.random() * bilhetes.length); 
+    } while (index === lastIndex && bilhetes.length > 1);
+    
     lastIndex = index;
     noteText.textContent = bilhetes[index];
     noteCard.classList.add('show');
   }, 250);
 });
-
 /* Isunitadas - Edite a quantidade na variavel abaixo */
 const isunitadasGallery = document.getElementById('isunitadas-gallery');
 const QUANTIDADE_FOTOS_ISUNITADAS = 20;
