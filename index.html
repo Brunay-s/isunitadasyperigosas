@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4 anos de nós! 🩵</title>
+
+<!-- Fontes: Fraunces (display), Karla (corpo), Caveat (manuscrita/afetiva) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Karla:wght@400;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     NAVEGAÇÃO
+     ============================================================ -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <span class="brand">🌸</span>
+    <ul class="tabs" role="tablist">
+      <li><button class="tab-btn active" data-tab="a-gente" role="tab">A Gente</button></li>
+      <li><button class="tab-btn" data-tab="historia" role="tab">História</button></li>
+      <li><button class="tab-btn" data-tab="bilhetinhos" role="tab">Bilhetinhos</button></li>
+      <li><button class="tab-btn" data-tab="isunitadas" role="tab">Isunitadas</button></li>
+      <li><button class="tab-btn" data-tab="e-agora" role="tab">E Agora?</button></li>
+      <li><button class="tab-btn" data-tab="meia-noite" role="tab">Meia Noite</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============================================================
+     ABA 1 — A GENTE (HOME)
+     ============================================================ -->
+<section id="a-gente" class="tab-panel active">
+  <div class="hero">
+    <div class="hero-frame">
+      <img src="images/foto capa.jpg" alt="Foto de nós dois" onerror="this.src='https://placehold.co/640x800/FAEDCD/3A5A40?text=Nossa+Foto'">
+    </div>
+    <h1 class="hero-title">4 anos de nós! 🩵</h1>
+    <p class="hero-text">
+      Fiz esse cantinho só nosso pra comemorar e relembrar um pouquinhos desses 4 anos de muita parceria, amor e periculosidade que define a gente. Eu te amo, te namorar é gostoso demais
+    </p>
+
+    <!-- Contador regressivo -->
+    <div class="countdown">
+      <div class="countdown-label">Nosso próximo beijo:</div>
+      <div class="countdown-grid">
+        <div class="countdown-unit">
+          <div class="countdown-number" id="cd-days">--</div>
+          <div class="countdown-unit-label">dias</div>
+        </div>
+        <div class="countdown-unit">
+          <div class="countdown-number" id="cd-hours">--</div>
+          <div class="countdown-unit-label">horas</div>
+        </div>
+        <div class="countdown-unit">
+          <div class="countdown-number" id="cd-minutes">--</div>
+          <div class="countdown-unit-label">minutos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title" style="text-align:center;">Nosso Amor</h2>
+  <p class="section-subtitle" style="margin-left:auto;margin-right:auto;text-align:center;">
+    Esses são os pontos que eu mais admiro no nosso relacionamento e que são muito importantes pra mim
+  </p>
+
+  <div class="pillars">
+    <div class="pillar-card">
+      <h3>Liberdade</h3>
+      <p>A tal liberdade rs. Acho que é o ponto mais importante em um relacionamento pra mim. A gente sempre deu nosso máximo pra proporcionar um amor livre para a outra, mas sabemos que nem sempre é fácil né, a gente erra, prende, solta e sofre. Mas no fim acho que é sobre isso né? Manter um amor em meio ao caos da insegurança… e se quer saber, no fundo não tem nada mais livre do que poder errar. Obrigada por sempre me acolher mesmo quando as coisas não saem do melhor jeito (espero te oferecer isso também).</p>
+    </div>
+    <div class="pillar-card">
+      <h3>Parceria</h3>
+      <p>Acho que é o ponto mais lindo do nosso relacionamento. Nossas trocas sempre tão genuínas, nosso empenho pra estar juntas, mesmo que isso signifique estar separadas fisicamente por um tempo. Eu amo como a gente faz questão uma da outra, e se interessa e apoia as coisinhas que estamos completamente fissuradas pra todo o sempre até a semana que vem (ou não haha)</p>
+    </div>
+    <div class="pillar-card">
+      <h3>Conversas</h3>
+      <p>Eu amo como a gente tem liberdade pra conversar sobre o que estamos sentindo, nossos desejos e incômodos. Como sempre ouvimos e acolhemos o que a outra tem pra falar, e mesmo que a gente discorde, tá tudo bem.  Nossas conversas, desde uma piadinha, declaração de amor, reclamação ou fofoca, sempre acabam em uma construçãozinha do nosso relacionamento.</p>
+    </div>
+    <div class="pillar-card">
+      <h3>Descobertas</h3>
+      <p>Eu amo como juntas, a gente descobre o mundo, uma a outra e a nós mesmas. Como estamos sempre incentivando uma a outra a desbravar, experimentar o novo, sem julgamento, sem peso. Vamo? Vamo! Esse espírito aventureira (y perigosa rs) faz meu coração bater mais forte, é lindo.</p>
+    </div>
+  </div>
+
+  <!-- Poema -->
+  <div class="poem-section">
+    <div class="poem-card">
+      <h3 class="poem-title">Pra fechar, quero deixar o poema que vc fez pra mim. Eu te amo</h3>
+      <div class="poem-text">
+        O amor existe<br>
+        nas danças sem música<br>
+        nas perguntas curiosas só para me conhecer um pouco mais<br>
+        no “OOOOOH” pra abafar algo “errado” que tenhamos feito<br>
+        no cozinhar juntas<br>
+        ao admirar sua arte<br>
+        nos beijos inesperados<br>
+        em dormir de bumbum<br>
+        nas risadas sinceras<br>
+        na compreensão e empatia<br>
+        quando te desejo<br>
+        nos elogios sinceros<br>
+        no peito passando no meu<br>
+        no carinho nas costas<br>
+        no abraço por trás<br>
+        quando você ri dos meus sustos mais bizarros - inclusive com seu pum -<br>
+        no aviãozinho<br>
+        em falar [pa la vra] [pa la vra] [palavrinha]<br>
+        no acordar com você do lado<br>
+        na parceria<br>
+        no olhar apaixonado<br>
+        em acampar com você<br>
+        ao te admirar cantando uma música com toda letra na cabeça<br>
+        ao colocar o pé gelado em seu corpo quente<br>
+        em perguntar assustada “você queria?” depois de ter comido tudo do prato<br>
+        em sentir sua boca no meu peito<br>
+        quando me devora<br>
+        nas piadas internas<br>
+        nos shows e festivais de música brasileira<br>
+        na liberdade<br>
+        em perguntar “tá brava?”<br>
+        no beijinho no canto da boca<br>
+        na conchinha maior ou menor - tanto faz -<br>
+        na foto no espelho do prédio pós role<br>
+        nas teorias sobre algum assunto aleatório<br>
+        ao te sentir molhada<br>
+        no role infinito com você<br>
+        em dividir a batatinha crocante - mesmo que ela seja bem pequena -<br>
+        em cantar alguma música com você - no karaokê, em casa ou no carro -<br>
+        na admiração da mulher linda que você é<br>
+        no pertencer do seu abraço<br>
+        em saber que você vai querer experimentar meu prato só porque ele é diferente do seu<br>
+        nos pequenos cuidados - como presentes - em casa<br>
+        em uma praia ou cachoeira com você<br>
+        no gozar juntas<br>
+        no carinho pra agradecer por ter feito a comida<br>
+        no incentivo a fazer algo<br>
+        em ser breguinha<br>
+        nas conversas difíceis<br>
+        em te arrepiar<br>
+        no chorar junto só pra não deixar chorando sozinha<br>
+        na construção de todos os dias<br>
+        no interesse<br>
+        nas piadas na cama só pra te fazer rir antes de dormir<br><br>
+        o amor existe<br>
+        em você<br>
+        com você<br>
+        na gente<br>
+        🩵
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABA 2 — HISTÓRIA
+     ============================================================ -->
+<section id="historia" class="tab-panel">
+  <h2 class="section-title">Até aqui</h2>
+  <p class="section-subtitle">Fiz uma linha do tempo pra gente relembrar um pouquinho como foram esses 4 anos desde o dia 1 (literalmente haha)</p>
+
+  <div class="timeline" id="timeline-container">
+    <!-- preenchido dinamicamente pelo script.js -->
+  </div>
+</section>
+
+<!-- Lightbox / zoom das fotos -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="" alt="Foto ampliada">
+</div>
+
+<!-- ============================================================
+     ABA 3 — BILHETINHOS
+     ============================================================ -->
+<section id="bilhetinhos" class="tab-panel">
+  <h2 class="section-title" style="text-align:center;">Bilhetinhos</h2>
+  <p class="section-subtitle" style="text-align:center;margin-left:auto;margin-right:auto;">
+    Juntei aqui todos os bilhetinhos que eu te mandei. Use sempre que precisar receber um carinho ou dar um sorrisinho bobo.
+  </p>
+
+  <div class="bilhetinhos-wrap">
+    <button class="draw-btn" id="draw-btn">Tirar um bilhetinho 🎁</button>
+    <div class="note-card" id="note-card">
+      <p class="note-text" id="note-text">Clique no botão acima para tirar seu bilhetinho.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABA 4 — ISUNITADAS (Galeria estilo Orkut)
+     ============================================================ -->
+<section id="isunitadas" class="tab-panel">
+  <h2 class="section-title" style="text-align:center;">Isunitadas</h2>
+  <p class="section-subtitle" style="text-align:center;margin-left:auto;margin-right:auto;">
+    Clique na foto para ampliar
+  </p>
+  <div class="orkut-gallery" id="isunitadas-gallery">
+    <!-- Preenchido pelo Javascript -->
+  </div>
+</section>
+
+<!-- ============================================================
+     ABA 5 — E AGORA?
+     ============================================================ -->
+<section id="e-agora" class="tab-panel">
+  <h2 class="section-title">E agora?</h2>
+  <p class="section-subtitle">O roteiro das nossas próximas aventuras — vamos riscando junto(a)s conforme formos realizando.</p>
+
+  <div class="roadmap" id="roadmap-container">
+    <!-- preenchido dinamicamente pelo script.js -->
+  </div>
+</section>
+
+<!-- ============================================================
+     ABA 6 — MEIA NOITE
+     ============================================================ -->
+<section id="meia-noite" class="tab-panel">
+  <h2 class="section-title">Vou te contar um segredo Meia Noite!</h2>
+  <div class="midnight-intro">
+    <p>Aqui toda hora é meia noite. Sempre que sentir no coração de contar um segredo, confessar ou se quiser falar qualquer coisa, aqui é um espaço seguro 🩵</p>
+  </div>
+
+  <form class="midnight-form" id="midnight-form">
+    <label for="secret-text">O que está sentindo?</label>
+    <textarea id="secret-text" name="mensagem" placeholder="Escreva aqui..." required></textarea>
+    <br>
+    <button type="submit" class="send-btn" id="send-btn">Enviar</button>
+    <p class="midnight-feedback" id="midnight-feedback"></p>
+  </form>
+</section>
+
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
