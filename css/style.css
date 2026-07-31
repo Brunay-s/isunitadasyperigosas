@@ -173,17 +173,71 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--wi
 .note-card::before { content: "🌸"; font-size: 1.5rem; display: block; margin-bottom: 0.8rem; }
 .note-text { font-family: var(--font-hand); font-size: 1.7rem; color: var(--ink); line-height: 1.4; }
 
-/* ISUNITADAS (GALERIA ORKUT) */
-.orkut-gallery {
-  display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 2rem;
+/* ============================================================
+   CARROSSEL (ISUNITADAS)
+   ============================================================ */
+.carousel-container {
+  position: relative;
+  max-width: 600px; /* Você pode aumentar ou diminuir a largura aqui */
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.orkut-thumb {
-  width: 120px; height: 120px; object-fit: cover; border-radius: 8px;
-  cursor: pointer; transition: transform 0.2s, border-color 0.2s;
-  border: 3px solid var(--sage);
-}
-.orkut-thumb:hover { transform: scale(1.08); border-color: var(--gold); }
 
+.carousel-track-container {
+  overflow: hidden;
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  border: 4px solid var(--sage);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-track img {
+  min-width: 100%;
+  height: 450px; /* Altura fixa para o carrossel não ficar pulando */
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--wine);
+  color: var(--white);
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.carousel-btn:hover {
+  background: var(--wine-dark);
+}
+
+.prev-btn {
+  left: -20px;
+}
+
+.next-btn {
+  right: -20px;
+}
+
+/* Ajuste para celular */
+@media (max-width: 760px) {
+  .prev-btn { left: -10px; }
+  .next-btn { right: -10px; }
+  .carousel-track img { height: 350px; }
+}
 /* ROTEIRO */
 .roadmap { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 1.5rem; }
 .roadmap-item {
