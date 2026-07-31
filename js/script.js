@@ -228,7 +228,7 @@ if (midnightForm) {
     
    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xlgqkoev';
       setTimeout(() => {
-        feedback.textContent = 'Mensagem salva com sucesso! (Configurar formspree)';
+        feedback.textContent = 'Mensagem salva com sucesso!';
         sendBtn.disabled = false;
         midnightForm.reset();
       }, 400);
