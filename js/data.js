@@ -1,23 +1,7 @@
 /* ------------------------------------------------------------
    1) BILHETINHOS
    ------------------------------------------------------------ */
-const bilhetes = [
-  "Depois de 4 anos, ainda sorrio sozinho(a) quando vejo seu nome no celular.",
-  "Se eu pudesse escolher de novo, escolheria você em todas as versões possíveis da nossa história.",
-  "Você é o motivo dos meus melhores dias e o colo dos meus piores.",
-  "Ainda bem que um dia eu tive a sorte de te encontrar.",
-  "Com você, o tempo passa rápido demais — e isso é o maior elogio que eu poderia fazer.",
-  "Você transformou coisas simples em memórias que eu guardo com carinho.",
-  "Cada 'de novo?' seu antes de dormir vale mais do que qualquer presente.",
-  "Obrigado(a) por construir comigo, com paciência, o nosso 'a gente'.",
-  "Se hoje eu tivesse que escolher um lugar para estar, seria do seu lado.",
-  "Você é a prova de que amor bom não precisa de drama, só precisa ser constante.",
-  "Te amo nos dias fáceis e, principalmente, nos difíceis.",
-  "Daqui a 4, 10, 40 anos: ainda quero ser sua pessoa favorita para contar o dia.",
-  "Seu abraço ainda é o meu lugar preferido no mundo inteiro.",
-  "Seus sonhos viraram parte dos meus planos, e isso é algo que eu não troco por nada.",
-  "Feliz por termos escolhido um ao outro, todos os dias, de novo."
-];
+const bilhetes_antigos = [];
 
 /* ------------------------------------------------------------
    2) LINHA DO TEMPO ("História")
