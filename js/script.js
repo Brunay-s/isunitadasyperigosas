@@ -226,7 +226,7 @@ if (midnightForm) {
     sendBtn.disabled = true;
     feedback.textContent = 'Enviando...';
     
-    if (FORMSPREE_ENDPOINT.includes('SEU_FORM_ID_AQUI')) {
+   const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xlgqkoev';
       setTimeout(() => {
         feedback.textContent = 'Mensagem salva com sucesso! (Configurar formspree)';
         sendBtn.disabled = false;
