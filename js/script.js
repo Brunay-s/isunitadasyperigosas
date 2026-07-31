@@ -85,22 +85,27 @@ const noteText = document.getElementById('note-text');
 let lastIndex = -1;
 let bilhetes = [];
 
-// Carrega o arquivo TXT automaticamente
+// Aqui o site vai buscar o seu arquivo .txt automaticamente
 fetch('bilhetinhos_lista.txt')
   .then(response => response.text())
   .then(text => {
-    // Separa o texto linha por linha e ignora linhas em branco
+    // Separa os bilhetes por linha (cada linha do txt vira um bilhete)
     bilhetes = text.split('\n').filter(linha => linha.trim() !== '');
   })
   .catch(err => {
     console.error('Erro ao carregar o arquivo txt:', err);
-    bilhetes = ["Erro ao carregar os bilhetinhos. Verifique o arquivo txt!"];
+    bilhetes = ["Vish, deu erro ao carregar os bilhetes! Verifique se o nome do arquivo txt está certinho no GitHub."];
   });
 
 drawBtn.addEventListener('click', () => {
-  if (bilhetes.length === 0) return; // Aguarda o arquivo carregar
+  if (bilhetes.length === 0) {
+    noteText.textContent = "Carregando... tente de novo em um segundo!";
+    noteCard.classList.add('show');
+    return;
+  }
 
   noteCard.classList.remove('show');
+  
   setTimeout(() => {
     let index;
     do { 
