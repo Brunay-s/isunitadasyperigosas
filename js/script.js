@@ -122,21 +122,67 @@ drawBtn.addEventListener('click', () => {
   }, 250);
 });
 
-/* Isunitadas - Edite a quantidade na variavel abaixo */
+/* ============================================================
+   Isunitadas - Carrossel
+   ============================================================ */
 const isunitadasGallery = document.getElementById('isunitadas-gallery');
-const QUANTIDADE_FOTOS_ISUNITADAS = 20;
+const QUANTIDADE_FOTOS_ISUNITADAS = 36;
 
 if (isunitadasGallery) {
+  // 1. Gera as fotos
   for (let i = 1; i <= QUANTIDADE_FOTOS_ISUNITADAS; i++) {
     const img = document.createElement('img');
     img.src = `images/isu${i}.jpg`;
-    img.className = 'orkut-thumb';
-    img.onerror = () => img.src = `https://placehold.co/120x120/FAEDCD/3A5A40?text=isu${i}`;
+    img.onerror = () => img.src = `https://placehold.co/600x450/FAEDCD/3A5A40?text=isu${i}`;
     img.onclick = () => {
       lightboxImg.src = img.src;
       lightbox.classList.add('open');
     };
     isunitadasGallery.appendChild(img);
+  }
+
+  // 2. Lógica do Carrossel e Transição
+  let currentIndex = 0;
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+  
+  function updateCarousel() {
+    isunitadasGallery.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+
+  function nextSlide() {
+    currentIndex++;
+    if (currentIndex >= QUANTIDADE_FOTOS_ISUNITADAS) {
+      currentIndex = 0; // Se chegar no final, volta para a primeira
+    }
+    updateCarousel();
+  }
+
+  function prevSlide() {
+    currentIndex--;
+    if (currentIndex < 0) {
+      currentIndex = QUANTIDADE_FOTOS_ISUNITADAS - 1; // Se voltar antes da primeira, vai para a última
+    }
+    updateCarousel();
+  }
+
+  // Comandos manuais (Setas)
+  nextBtn.addEventListener('click', () => {
+    nextSlide();
+    resetAutoPlay(); // Pausa o tempo e reinicia para não passar foto muito rápido
+  });
+  
+  prevBtn.addEventListener('click', () => {
+    prevSlide();
+    resetAutoPlay();
+  });
+
+  // Comando automático (A cada 3 segundos / 3000 milissegundos)
+  let autoPlay = setInterval(nextSlide, 3000);
+
+  function resetAutoPlay() {
+    clearInterval(autoPlay);
+    autoPlay = setInterval(nextSlide, 3000);
   }
 }
 
