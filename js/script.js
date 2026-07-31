@@ -126,7 +126,7 @@ drawBtn.addEventListener('click', () => {
    Isunitadas - Carrossel
    ============================================================ */
 const isunitadasGallery = document.getElementById('isunitadas-gallery');
-const QUANTIDADE_FOTOS_ISUNITADAS = 36;
+const QUANTIDADE_FOTOS_ISUNITADAS = 40;
 
 if (isunitadasGallery) {
   // 1. Gera as fotos
