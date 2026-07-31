@@ -16,40 +16,36 @@ tabButtons.forEach((btn) => {
 });
 
 /* Contador */
-document.addEventListener("DOMContentLoaded", function() {
-  // Data no formato ISO (mais universal e à prova de bugs em iPhones)
-  const TARGET_DATE = new Date('2026-09-30T08:30:00');
+const TARGET_DATE = new Date('2026/09/30 08:30:00'); // Formato com barras para evitar erro em celulares
 
-  function updateCountdown() {
-    const now = new Date();
-    const diff = TARGET_DATE - now;
+function updateCountdown() {
+  const elDays = document.getElementById('cd-days');
+  const elHours = document.getElementById('cd-hours');
+  const elMinutes = document.getElementById('cd-minutes');
 
-    const elDays = document.getElementById('cd-days');
-    const elHours = document.getElementById('cd-hours');
-    const elMinutes = document.getElementById('cd-minutes');
+  if (!elDays || !elHours || !elMinutes) return;
 
-    // Se a página não carregou os elementos ainda, ele aguarda
-    if (!elDays || !elHours || !elMinutes) return; 
+  const now = new Date();
+  const diff = TARGET_DATE.getTime() - now.getTime();
 
-    if (diff <= 0) {
-      elDays.textContent = '0';
-      elHours.textContent = '0';
-      elMinutes.textContent = '0';
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-
-    elDays.textContent = days;
-    elHours.textContent = hours;
-    elMinutes.textContent = minutes;
+  if (diff <= 0) {
+    elDays.textContent = '0';
+    elHours.textContent = '0';
+    elMinutes.textContent = '0';
+    return;
   }
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-});
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+  elDays.textContent = days;
+  elHours.textContent = hours;
+  elMinutes.textContent = minutes;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
 /* História Timeline (com trava de segurança) */
 const timelineContainer = document.getElementById('timeline-container');
